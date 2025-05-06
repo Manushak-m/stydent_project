@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Արի խաղանք X0</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- PWA համար անհրաժեշտ հղումներ -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#81a0db">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Խաչուկ-Զրոյիկ</h1>
+        <div id="game"></div>
+        <button id="restart">Նոր խաղ</button>
+    </div>
+    
+    <script>
+        // Service Worker-ի գրանցում
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker-ը գրանցված է:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker-ի գրանցումը ձախողվեց:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
